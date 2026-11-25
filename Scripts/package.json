@@ -1,0 +1,8 @@
+{
+  "name": "blurhashswift-scripts",
+  "private": true,
+  "description": "Generates the tables and the reference fixtures of BlurHashSwift. Not part of the Swift package.",
+  "devDependencies": {
+    "blurhash": "2.0.5"
+  }
+}

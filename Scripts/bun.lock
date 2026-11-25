@@ -1,0 +1,15 @@
+{
+  "lockfileVersion": 2,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "blurhashswift-scripts",
+      "devDependencies": {
+        "blurhash": "2.0.5",
+      },
+    },
+  },
+  "packages": {
+    "blurhash": ["blurhash@2.0.5", "", {}, "sha512-cRygWd7kGBQO3VEhPiTgq4Wc43ctsM+o46urrmPOiuAe+07fzlSB9OJVdpgDL0jPqXUVQ9ht7aq7kxOeJHRK+w=="],
+  }
+}

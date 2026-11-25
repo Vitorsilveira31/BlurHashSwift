@@ -1,0 +1,14 @@
+{
+  "name": "blurhashswift-web",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "demo": "bash demo/run.sh",
+    "test": "bash demo/run.sh --test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0",
+    "blurhash": "2.0.5"
+  }
+}

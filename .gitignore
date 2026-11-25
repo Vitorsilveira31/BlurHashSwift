@@ -1,0 +1,8 @@
+.build/
+.swiftpm/
+/Packages
+xcuserdata/
+DerivedData/
+node_modules/
+Web/demo/.build/
+/Package.resolved

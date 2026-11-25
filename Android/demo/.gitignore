@@ -1,0 +1,6 @@
+.build/
+Android/.gradle/
+Android/build/
+Android/app/build/
+Android/local.properties
+Package.resolved
