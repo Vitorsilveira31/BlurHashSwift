@@ -128,10 +128,10 @@ shared with other builds while measuring, so read these as orders of magnitude.
 
 | | Apple M5 Pro, macOS (native) | Android emulator, arm64 (native, Skip's Swift SDK 6.4.2) | Chromium, WebAssembly (Embedded) | WebKit, WebAssembly (Embedded) |
 |---|---|---|---|---|
-| decode 4×3 components, 16×16 | 2.2 µs | 4.6–5.0 µs | 4–6 µs | 4–7 µs |
-| decode 4×3 components, 32×32 | 7 µs | 17–22 µs | 11–17 µs | 10–19 µs |
+| decode 4×3 components, 16×16 | 2.2 µs | 4.6–5.0 µs | 4–8.5 µs | 3.5–9 µs |
+| decode 4×3 components, 32×32 | 7 µs | 17–22 µs | 11–20 µs | 9–23 µs |
 | decode 9×9 components, 32×32 | 14 µs | 43 µs | | |
-| PNG data URL of a 32×32 image | 14 µs | 42 µs | 28–35 µs | 22–37 µs |
+| PNG data URL of a 32×32 image | 14 µs | 42 µs | 28–45 µs | 22–49 µs |
 | encode 100×100, 4×3 components | 32 µs | 55 µs | | |
 
 The browser figures come from the demo app's Benchmark button (Web/demo), timed with the page's millisecond clock over
