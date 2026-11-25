@@ -6,6 +6,11 @@
 //   Android (Skip Fuse):      a UIImage of the PNG, which Skip holds as an android.graphics.Bitmap and draws with a
 //                             Compose BitmapPainter (bilinear, FilterQuality.Low).
 //   Browser (SwiftUIWeb):     an <img> of the PNG as a data: URL, scaled by the browser's compositor.
+//
+// Where there is no SwiftUI at all (Linux without SwiftUIWeb), the module only re-exports the codec.
+@_exported import BlurHashCore
+
+#if canImport(SwiftUIWeb) || canImport(SwiftUI)
 #if canImport(SwiftUIWeb)
 import SwiftUIWeb
 #else
@@ -18,7 +23,6 @@ import SkipBridge
 #elseif canImport(CoreGraphics)
 import CoreGraphics
 #endif
-@_exported import BlurHashCore
 
 /// The image a BlurHash describes, filling its frame: a placeholder to show while the real image loads.
 ///
@@ -152,3 +156,4 @@ public enum BlurHashImageCache {
     #endif
   }
 }
+#endif
