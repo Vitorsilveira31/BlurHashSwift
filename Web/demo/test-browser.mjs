@@ -143,6 +143,8 @@ async function scenario(browser, base, engine, worker) {
       check(tile.natural[0] === 32 && tile.natural[1] === 32, `${label}: tile ${index} is a 32 by 32 bitmap (${tile.natural})`);
       check(Math.abs(tile.box[0] - 120) < 0.5 && Math.abs(tile.box[1] - 180) < 0.5, `${label}: tile ${index} fills its 120 by 180 frame (${tile.box})`);
       check(tile.rendering === "auto", `${label}: tile ${index} is scaled with smoothing (image-rendering ${tile.rendering})`);
+      // Decorative: no text alternative, so the data: URL is neither announced nor shown if the image fails.
+      check(tile.alt === "", `${label}: tile ${index} has an empty alt (${(tile.alt ?? "none").length} characters)`);
 
       // The bitmap is what the reference decoder gives, to a rounding step.
       const actual = await page.evaluate(naturalPixels, `tile-${index}`);

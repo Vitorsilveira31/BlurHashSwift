@@ -38,7 +38,7 @@ let package = Package(
 if isWeb {
   // SwiftUIWeb's own minimum for a native build; the browser build sets none.
   package.platforms = environment["SWIFTUIWEB_EMBEDDED"] != nil ? nil : [.macOS(.v15)]
-  package.dependencies = [.package(url: "https://github.com/Vitorsilveira31/SwiftUIWeb.git", from: "0.1.40")]
+  package.dependencies = [.package(url: "https://github.com/Vitorsilveira31/SwiftUIWeb.git", from: "0.1.43")]
   target("BlurHashSwift").dependencies.append(.product(name: "SwiftUIWeb", package: "swiftuiweb"))
   if environment["SWIFTUIWEB_EMBEDDED"] != nil {
     // The browser build compiles libraries only.

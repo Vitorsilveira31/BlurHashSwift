@@ -30,7 +30,7 @@ there is no blur and nothing to redraw: a resize changes the frame of a texture 
 |---|---|---|
 | Apple (SwiftUI) | a `CGImage` of the pixels in `Image(decorative:scale:)` | `.resizable().interpolation(.medium)`, by Core Animation |
 | Android (Skip Fuse) | a `UIImage` of the pixels as a PNG, which Skip decodes once into an `android.graphics.Bitmap` | Compose's `BitmapPainter`, bilinear (`FilterQuality.Low`) |
-| Browser (SwiftUIWeb) | an `<img>` whose source is the PNG as a `data:` URL | the browser's compositor (`image-rendering: auto`) |
+| Browser (SwiftUIWeb) | an `<img>` whose source is the PNG as a `data:` URL, through `Image(decorative:)` (empty `alt`) | the browser's compositor (`image-rendering: auto`) |
 
 A stretched square bitmap is the same picture as one decoded at the frame's aspect ratio: the basis functions take the
 position as a fraction of the frame. So one 32 by 32 image serves every frame size.
@@ -59,7 +59,7 @@ The package picks its UI layer from the build:
   only target Apple platforms fetch nothing of Skip's; on Android `BlurHashImage` bridges itself to Compose through
   skip-fuse-ui's `SkipUIBridging`, as the plugin would for a view without state.
 - **SwiftUIWeb**: the browser build sets `SWIFTUIWEB_EMBEDDED`, and the package then takes `SwiftUI` from SwiftUIWeb
-  (0.1.40 or later). For a native build against SwiftUIWeb (tests of a web app on the Mac or Linux), set
+  (0.1.43 or later). For a native build against SwiftUIWeb (tests of a web app on the Mac or Linux), set
   `BLURHASHSWIFT_SWIFTUIWEB=1`.
 
 ## Usage
@@ -155,8 +155,9 @@ test renders the same cached image at any size.
   the modifier draws behind its view, a malformed hash draws nothing, one decode per hash and resolution.
 - **Browser** (`Web/demo`, Playwright): a SwiftUIWeb app built with the Embedded WebAssembly toolchain, in Chromium and
   WebKit, with Swift in a worker and on the main thread. Each tile is an `<img>` of a 32×32 PNG data URL with the
-  reference decoder's pixels, fills its frame, is filtered when scaled (its colors change between the bitmap's columns,
-  where an `image-rendering: pixelated` control changes only at their edges), and keeps its image when resized.
+  reference decoder's pixels and an empty `alt`, fills its frame, is filtered when scaled (its colors change between
+  the bitmap's columns, where an `image-rendering: pixelated` control changes only at their edges), and keeps its image
+  when resized.
 - **Android** (`Android/demo`): the codec tests run natively on an emulator (`skip android test`). `check.sh` builds a
   Skip Fuse app that shows the four example hashes, installs it on the running emulator or device, and reads the
   screenshot: each tile has its frame's width before and after a resize, and is filtered when scaled (the same column

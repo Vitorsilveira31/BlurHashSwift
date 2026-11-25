@@ -5,7 +5,8 @@
 //   Apple (SwiftUI):          a CGImage of the pixels in Image(decorative:scale:), .resizable().interpolation(.medium).
 //   Android (Skip Fuse):      a UIImage of the PNG, which Skip holds as an android.graphics.Bitmap and draws with a
 //                             Compose BitmapPainter (bilinear, FilterQuality.Low).
-//   Browser (SwiftUIWeb):     an <img> of the PNG as a data: URL, scaled by the browser's compositor.
+//   Browser (SwiftUIWeb):     an <img> of the PNG as a data: URL (Image(decorative:), so alt is empty), scaled by
+//                             the browser's compositor.
 //
 // Where there is no SwiftUI at all (Linux without SwiftUIWeb), the module only re-exports the codec.
 @_exported import BlurHashCore
@@ -124,7 +125,7 @@ public enum BlurHashImageCache {
   static func image(for key: BlurHashKey) -> Image? {
     guard let image = platformImage(for: key) else { return nil }
     #if canImport(SwiftUIWeb)
-    return Image(image)
+    return Image(decorative: image)
     #elseif os(Android)
     return Image(uiImage: image)
     #elseif canImport(CoreGraphics)

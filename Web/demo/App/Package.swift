@@ -8,7 +8,7 @@ let package = Package(
   name: "BlurHashDemo",
   platforms: [.macOS(.v15)],
   dependencies: [
-    .package(url: "https://github.com/Vitorsilveira31/SwiftUIWeb.git", from: "0.1.40"),
+    .package(url: "https://github.com/Vitorsilveira31/SwiftUIWeb.git", from: "0.1.43"),
     .package(path: "../BlurHashSwift"),
   ],
   targets: [
