@@ -22,7 +22,9 @@ let package = Package(
     .library(name: "BlurHashCore", targets: ["BlurHashCore"]),
   ],
   targets: [
-    .target(name: "BlurHashCore"),
+    // On Linux x86_64 the compiler lowers `rounded(.down)` to libm's `floor` (no SSE4.1 rounding instruction is assumed),
+    // and nothing else links libm into an executable that does not import Glibc.
+    .target(name: "BlurHashCore", linkerSettings: [.linkedLibrary("m", .when(platforms: [.linux]))]),
     .target(name: "BlurHashSwift", dependencies: ["BlurHashCore"]),
     .testTarget(name: "BlurHashCoreTests", dependencies: ["BlurHashCore"]),
     .testTarget(name: "BlurHashSwiftTests", dependencies: ["BlurHashSwift"]),
