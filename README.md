@@ -136,6 +136,7 @@ shared with other builds while measuring, so read these as orders of magnitude.
 
 The browser figures come from the demo app's Benchmark button (Web/demo), timed with the page's millisecond clock over
 1000 calls.
+On GitHub's hosted CI runners the 32×32 decode (4×3 components) takes 13 µs on macOS and 17 µs on Linux x86_64.
 
 A decode happens once per hash, on first display. After that a view costs one dictionary lookup per body evaluation, and
 a resize costs nothing in the library: the browser test checks that widening the tiles writes no `src`, and the Apple
